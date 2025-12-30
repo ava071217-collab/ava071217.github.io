@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosplay项目规划助手</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #3ab7a8;
+            --primary-dark: #2a9d8f;
+            --primary-light: #a8e6cf;
+            --secondary-color: #ff9a8b;
+            --accent-color: #7ec4cf;
+            --light-bg: #f8fff9;
+            --dark-bg: #264653;
+            --text-color: #2d3748;
+            --text-light: #718096;
+            --border-color: #cce7e3;
+            --success-color: #38b2ac;
+            --danger-color: #f56565;
+            --warning-color: #ed8936;
+            --card-bg: #ffffff;
+            --shadow-color: rgba(58, 183, 168, 0.1);
+        }
+        
+        body {
+            background-color: #f0faf9;
+            background-image: radial-gradient(var(--primary-light) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 30px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 35px 0;
+            text-align: center;
+            border-bottom: none;
+            box-shadow: 0 4px 20px rgba(42, 157, 143, 0.2);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 i {
+            margin-right: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .projects-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .project-details-section {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(58, 183, 168, 0.15);
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(58, 183, 168, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: #edf7f6;
+            color: var(--primary-dark);
+            border: 1px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #2c9c94;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #e53e3e;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #dd6b20;
+            transform: translateY(-2px);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f9fffe;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(58, 183, 168, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .project-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .project-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .project-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .project-list::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+        
+        .project-list::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+        
+        .project-item {
+            background: white;
+            border-left: 5px solid var(--primary-color);
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+        
+        .project-item:hover {
+            background-color: #f8fffe;
+            border-left-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .project-item.active {
+            background-color: #f0fcfb;
+            border-left-color: var(--primary-dark);
+            box-shadow: 0 6px 15px rgba(58, 183, 168, 0.2);
+        }
+        
+        .project-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+        
+        .project-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .project-actions button {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+        
+        .cost-item, .clothing-item, .wig-item {
+            background-color: #f8fffe;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        .cost-item-header, .clothing-item-header, .wig-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .cost-item-header h4, .clothing-item-header h4, .wig-item-header h4 {
+            color: var(--primary-dark);
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .item-actions button {
+            padding: 5px 10px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+        }
+        
+        .cost-amount {
+            font-weight: bold;
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--border-color);
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        
+        .details-content {
+            display: none;
+        }
+        
+        .details-content.active {
+            display: block;
+        }
+        
+        .cost-summary {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(58, 183, 168, 0.2);
+        }
+        
+        .cost-summary h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .total-cost {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .time-location {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .time-location > div {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .time-location {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        .project-character {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+            animation: slideIn 0.3s ease;
+            border-left: 5px solid;
+        }
+        
+        .notification.success {
+            background-color: var(--success-color);
+            border-left-color: #2c9c94;
+        }
+        
+        .notification.error {
+            background-color: var(--danger-color);
+            border-left-color: #e53e3e;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(42, 157, 143, 0.8);
+            z-index: 1001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        
+        .modal .card {
+            animation: modalAppear 0.3s ease;
+        }
+        
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cost-type-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .makeup-badge {
+            background-color: #ffd6cc;
+            color: #c05621;
+        }
+        
+        .wig-badge {
+            background-color: #d1f7ff;
+            color: #2b6cb0;
+        }
+        
+        .clothing-badge {
+            background-color: #e2f7d8;
+            color: #276749;
+        }
+        
+        .other-badge {
+            background-color: #f0e6ff;
+            color: #553c9a;
+        }
+        
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-mask"></i> Cosplay项目规划助手</h1>
+            <p class="subtitle">记录您的Cosplay计划，管理服装、假发、妆容费用及时间地点安排</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <!-- 左侧：项目列表 -->
+            <section class="projects-section">
+                <h2 class="section-title"><i class="fas fa-list"></i> 我的Cosplay项目</h2>
+                
+                <div class="card">
+                    <button id="newProjectBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">
+                        <i class="fas fa-plus-circle"></i> 新建Cosplay项目
+                    </button>
+                    
+                    <div id="projectList" class="project-list">
+                        <!-- 项目列表将在这里动态生成 -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 右侧：项目详情 -->
+            <section class="project-details-section">
+                <h2 class="section-title"><i class="fas fa-clipboard-list"></i> 项目详情</h2>
+                
+                <div id="projectDetails" class="details-content">
+                    <!-- 项目详情将在这里动态生成 -->
+                </div>
+                
+                <div id="emptyState" class="empty-state card">
+                    <i class="fas fa-hat-wizard"></i>
+                    <h3>暂无选中的项目</h3>
+                    <p>请从左侧选择一个项目，或点击"新建Cosplay项目"按钮开始规划</p>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Cosplay项目规划助手 &copy; 2023 | 专为Cosplayer设计的项目管理系统</p>
+        </footer>
+    </div>
+    
+    <!-- 新建项目模态框 -->
+    <div id="newProjectModal" class="modal">
+        <div class="card" style="width:90%; max-width:600px; max-height:90vh; overflow-y:auto;">
+            <h2 class="section-title"><i class="fas fa-plus-circle"></i> 新建Cosplay项目</h2>
+            
+            <form id="newProjectForm">
+                <div class="form-group">
+                    <label for="projectName">项目名称 *</label>
+                    <input type="text" id="projectName" placeholder="例如：Fate/Stay Night - Saber" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="projectCharacter">角色名称 *</label>
+                    <input type="text" id="projectCharacter" placeholder="例如：Saber/阿尔托莉雅" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="projectDescription">项目描述</label>
+                    <textarea id="projectDescription" placeholder="描述一下这个Cosplay项目的背景、计划或任何备注..."></textarea>
+                </div>
+                
+                <div class="time-location">
+                    <div class="form-group">
+                        <label for="projectTime">计划完成时间</label>
+                        <input type="date" id="projectTime">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectLocation">计划拍摄/展示地点</label>
+                        <input type="text" id="projectLocation" placeholder="例如：上海漫展">
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <button type="submit" class="btn btn-success" style="flex: 1;">
+                        <i class="fas fa-save"></i> 保存项目
+                    </button>
+                    <button type="button" id="cancelNewProjectBtn" class="btn btn-secondary" style="flex: 1;">
+                        <i class="fas fa-times"></i> 取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 通知区域 -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // 存储所有项目数据
+        let projects = JSON.parse(localStorage.getItem('cosplayProjects')) || [];
+        let currentProjectId = null;
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加示例数据（如果没有任何项目）
+            if (projects.length === 0) {
+                projects = getSampleProjects();
+                saveProjectsToLocalStorage();
+            }
+            
+            renderProjectList();
+            setupEventListeners();
+            
+            // 如果有项目，默认选中第一个
+            if (projects.length > 0) {
+                currentProjectId = projects[0].id;
+                renderProjectDetails(currentProjectId);
+            }
+        });
+        
+        // 获取示例项目数据
+        function getSampleProjects() {
+            return [
+                {
+                    id: "1",
+                    name: "Fate/Stay Night - Saber",
+                    character: "Saber/阿尔托莉雅",
+                    description: "经典Saber蓝色战斗服，计划参加年底的动漫展",
+                    time: "2023-12-15",
+                    location: "上海国家会展中心",
+                    costs: [
+                        { id: "101", name: "妆费", amount: "150.00", description: "专业Cos妆面", type: "makeup" },
+                        { id: "102", name: "假发费", amount: "280.00", description: "Saber金色高马尾假发", type: "wig" },
+                        { id: "103", name: "服装费", amount: "650.00", description: "蓝色战斗服定制", type: "clothing" }
+                    ],
+                    clothing: [
+                        { id: "201", name: "Saber战斗服", source: "喵屋小铺定制", description: "蓝色主体，银色铠甲部分" },
+                        { id: "202", name: "誓约胜利之剑", source: "道具自制", description: "1:1比例道具剑" }
+                    ],
+                    wigs: [
+                        { id: "301", name: "Saber金色高马尾", source: "漫美假发", description: "金色带呆毛，长度65cm" }
+                    ],
+                    createdAt: "2023-10-01T10:30:00Z"
+                },
+                {
+                    id: "2",
+                    name: "原神 - 胡桃",
+                    character: "胡桃",
+                    description: "往生堂堂主，计划拍摄外景照片",
+                    time: "2023-11-20",
+                    location: "杭州植物园",
+                    costs: [
+                        { id: "104", name: "妆费", amount: "120.00", description: "胡桃特色梅花妆", type: "makeup" },
+                        { id: "105", name: "服装费", amount: "420.00", description: "胡桃主题服装", type: "clothing" }
+                    ],
+                    clothing: [
+                        { id: "203", name: "胡桃主题服装", source: "三分妄想", description: "黑色主体，红色装饰" },
+                        { id: "204", name: "护摩之杖", source: "道具定制", description: "胡桃专属武器道具" }
+                    ],
+                    wigs: [
+                        { id: "302", name: "胡桃双马尾假发", source: "AOI假发", description: "渐变色，带梅花头饰" }
+                    ],
+                    createdAt: "2023-10-10T14:20:00Z"
+                }
+            ];
+        }
+        
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 新建项目按钮
+            document.getElementById('newProjectBtn').addEventListener('click', showNewProjectModal);
+            
+            // 取消新建项目
+            document.getElementById('cancelNewProjectBtn').addEventListener('click', hideNewProjectModal);
+            
+            // 提交新建项目表单
+            document.getElementById('newProjectForm').addEventListener('submit', handleNewProjectSubmit);
+            
+            // 点击模态框外部关闭
+            document.getElementById('newProjectModal').addEventListener('click', function(e) {
+                if (e.target === this) hideNewProjectModal();
+            });
+        }
+        
+        // 显示新建项目模态框
+        function showNewProjectModal() {
+            document.getElementById('newProjectModal').style.display = 'flex';
+            document.getElementById('projectName').focus();
+        }
+        
+        // 隐藏新建项目模态框
+        function hideNewProjectModal() {
+            document.getElementById('newProjectModal').style.display = 'none';
+            document.getElementById('newProjectForm').reset();
+        }
+        
+        // 处理新建项目提交
+        function handleNewProjectSubmit(e) {
+            e.preventDefault();
+            
+            const projectName = document.getElementById('projectName').value.trim();
+            const projectCharacter = document.getElementById('projectCharacter').value.trim();
+            const projectDescription = document.getElementById('projectDescription').value.trim();
+            const projectTime = document.getElementById('projectTime').value;
+            const projectLocation = document.getElementById('projectLocation').value.trim();
+            
+            if (!projectName || !projectCharacter) {
+                showNotification('项目名称和角色名称不能为空', 'error');
+                return;
+            }
+            
+            const newProject = {
+                id: Date.now().toString(),
+                name: projectName,
+                character: projectCharacter,
+                description: projectDescription,
+                time: projectTime,
+                location: projectLocation,
+                costs: [],
+                clothing: [],
+                wigs: [],
+                createdAt: new Date().toISOString()
+            };
+            
+            projects.push(newProject);
+            saveProjectsToLocalStorage();
+            
+            hideNewProjectModal();
+            renderProjectList();
+            
+            // 选中新建的项目
+            currentProjectId = newProject.id;
+            renderProjectDetails(currentProjectId);
+            
+            showNotification('项目创建成功！', 'success');
+        }
+        
+        // 渲染项目列表
+        function renderProjectList() {
+            const projectListElement = document.getElementById('projectList');
+            
+            if (projects.length === 0) {
+                projectListElement.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-theater-masks"></i>
+                        <h3>暂无项目</h3>
+                        <p>点击上方按钮创建您的第一个Cosplay项目</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            projectListElement.innerHTML = projects.map(project => `
+                <div class="project-item ${currentProjectId === project.id ? 'active' : ''}" data-id="${project.id}">
+                    <div>
+                        <h3>${project.name}</h3>
+                        <span class="project-character">${project.character}</span>
+                        <p>${project.description ? project.description.substring(0, 50) + (project.description.length > 50 ? '...' : '') : '暂无描述'}</p>
+                        <small>创建时间: ${formatDate(project.createdAt)}</small>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn btn-warning btn-edit" data-id="${project.id}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-delete" data-id="${project.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // 添加项目点击事件
+            document.querySelectorAll('.project-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('btn-edit') && !e.target.classList.contains('btn-delete') && 
+                        !e.target.parentElement.classList.contains('btn-edit') && !e.target.parentElement.classList.contains('btn-delete')) {
+                        
+                        const projectId = this.getAttribute('data-id');
+                        currentProjectId = projectId;
+                        renderProjectDetails(projectId);
+                        renderProjectList(); // 重新渲染列表以更新active状态
+                    }
+                });
+            });
+            
+            // 添加编辑按钮事件
+            document.querySelectorAll('.btn-edit').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const projectId = this.getAttribute('data-id');
+                    editProject(projectId);
+                });
+            });
+            
+            // 添加删除按钮事件
+            document.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const projectId = this.getAttribute('data-id');
+                    deleteProject(projectId);
+                });
+            });
+        }
+        
+        // 渲染项目详情
+        function renderProjectDetails(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            // 隐藏空状态
+            document.getElementById('emptyState').style.display = 'none';
+            document.getElementById('projectDetails').classList.add('active');
+            
+            // 计算总费用
+            const totalCost = project.costs.reduce((sum, cost) => sum + parseFloat(cost.amount || 0), 0);
+            
+            document.getElementById('projectDetails').innerHTML = `
+                <div class="card">
+                    <div class="detail-header">
+                        <div>
+                            <h2 style="font-size: 1.8rem; margin-bottom: 5px;">${project.name}</h2>
+                            <span class="project-character" style="font-size: 1rem;">${project.character}</span>
+                        </div>
+                        <button id="editProjectBtn" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> 编辑项目
+                        </button>
+                    </div>
+                    
+                    <p style="margin-bottom: 20px; color: var(--text-light); line-height: 1.7;">${project.description || '暂无描述'}</p>
+                    
+                    <div class="time-location">
+                        <div>
+                            <strong><i class="far fa-calendar-alt" style="color: var(--primary-color);"></i> 计划完成时间:</strong>
+                            <p style="margin-top: 5px;">${project.time ? formatDate(project.time) : '未设定'}</p>
+                        </div>
+                        <div>
+                            <strong><i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i> 计划地点:</strong>
+                            <p style="margin-top: 5px;">${project.location || '未设定'}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="section-title"><i class="fas fa-money-bill-wave"></i> 费用管理</h3>
+                    
+                    <div id="costsList">
+                        ${project.costs.length > 0 ? 
+                            project.costs.map(cost => `
+                                <div class="cost-item" data-id="${cost.id}">
+                                    <div class="cost-item-header">
+                                        <div style="display: flex; align-items: center;">
+                                            <h4>${cost.name}</h4>
+                                            <span class="cost-type-badge ${cost.type === 'makeup' ? 'makeup-badge' : cost.type === 'wig' ? 'wig-badge' : cost.type === 'clothing' ? 'clothing-badge' : 'other-badge'}">
+                                                ${cost.type === 'makeup' ? '妆费' : cost.type === 'wig' ? '毛费' : cost.type === 'clothing' ? '服装费' : '其他'}
+                                            </span>
+                                        </div>
+                                        <div class="item-actions">
+                                            <button class="btn btn-warning btn-edit-cost" data-id="${cost.id}">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-delete-cost" data-id="${cost.id}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                                        <div>
+                                            <p>${cost.description || '无描述'}</p>
+                                        </div>
+                                        <div class="cost-amount">¥${parseFloat(cost.amount).toFixed(2)}</div>
+                                    </div>
+                                </div>
+                            `).join('') : 
+                            '<div class="empty-state" style="padding: 20px;"><i class="fas fa-money-bill"></i><p>暂无费用记录</p></div>'
+                        }
+                    </div>
+                    
+                    <button id="addCostBtn" class="btn btn-secondary" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-plus"></i> 添加费用
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="section-title"><i class="fas fa-tshirt"></i> 服装选择</h3>
+                    
+                    <div id="clothingList">
+                        ${project.clothing.length > 0 ? 
+                            project.clothing.map(clothing => `
+                                <div class="clothing-item" data-id="${clothing.id}">
+                                    <div class="clothing-item-header">
+                                        <h4>${clothing.name}</h4>
+                                        <div class="item-actions">
+                                            <button class="btn btn-warning btn-edit-clothing" data-id="${clothing.id}">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-delete-clothing" data-id="${clothing.id}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p>${clothing.description || '无描述'}</p>
+                                    <small>来源: ${clothing.source || '未指定'}</small>
+                                </div>
+                            `).join('') : 
+                            '<div class="empty-state" style="padding: 20px;"><i class="fas fa-tshirt"></i><p>暂无服装选择</p></div>'
+                        }
+                    </div>
+                    
+                    <button id="addClothingBtn" class="btn btn-secondary" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-plus"></i> 添加服装
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="section-title"><i class="fas fa-user"></i> 假发选择</h3>
+                    
+                    <div id="wigsList">
+                        ${project.wigs.length > 0 ? 
+                            project.wigs.map(wig => `
+                                <div class="wig-item" data-id="${wig.id}">
+                                    <div class="wig-item-header">
+                                        <h4>${wig.name}</h4>
+                                        <div class="item-actions">
+                                            <button class="btn btn-warning btn-edit-wig" data-id="${wig.id}">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-delete-wig" data-id="${wig.id}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p>${wig.description || '无描述'}</p>
+                                    <small>来源: ${wig.source || '未指定'}</small>
+                                </div>
+                            `).join('') : 
+                            '<div class="empty-state" style="padding: 20px;"><i class="fas fa-user"></i><p>暂无假发选择</p></div>'
+                        }
+                    </div>
+                    
+                    <button id="addWigBtn" class="btn btn-secondary" style="width: 100%; margin-top: 15px;">
+                        <i class="fas fa-plus"></i> 添加假发
+                    </button>
+                </div>
+                
+                <div class="cost-summary">
+                    <h3><i class="fas fa-calculator"></i> 总费用估算</h3>
+                    <div class="total-cost">¥${totalCost.toFixed(2)}</div>
+                    <p>${project.costs.length} 个费用项目</p>
+                </div>
+            `;
+            
+            // 添加详情页的事件监听
+            addDetailEventListeners(projectId);
+        }
+        
+        // 为详情页添加事件监听
+        function addDetailEventListeners(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            // 编辑项目按钮
+            document.getElementById('editProjectBtn').addEventListener('click', () => editProject(projectId));
+            
+            // 添加费用按钮
+            document.getElementById('addCostBtn').addEventListener('click', () => addCostItem(projectId));
+            
+            // 编辑费用按钮
+            document.querySelectorAll('.btn-edit-cost').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const costId = this.getAttribute('data-id');
+                    editCostItem(projectId, costId);
+                });
+            });
+            
+            // 删除费用按钮
+            document.querySelectorAll('.btn-delete-cost').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const costId = this.getAttribute('data-id');
+                    deleteCostItem(projectId, costId);
+                });
+            });
+            
+            // 添加服装按钮
+            document.getElementById('addClothingBtn').addEventListener('click', () => addClothingItem(projectId));
+            
+            // 编辑服装按钮
+            document.querySelectorAll('.btn-edit-clothing').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const clothingId = this.getAttribute('data-id');
+                    editClothingItem(projectId, clothingId);
+                });
+            });
+            
+            // 删除服装按钮
+            document.querySelectorAll('.btn-delete-clothing').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const clothingId = this.getAttribute('data-id');
+                    deleteClothingItem(projectId, clothingId);
+                });
+            });
+            
+            // 添加假发按钮
+            document.getElementById('addWigBtn').addEventListener('click', () => addWigItem(projectId));
+            
+            // 编辑假发按钮
+            document.querySelectorAll('.btn-edit-wig').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const wigId = this.getAttribute('data-id');
+                    editWigItem(projectId, wigId);
+                });
+            });
+            
+            // 删除假发按钮
+            document.querySelectorAll('.btn-delete-wig').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const wigId = this.getAttribute('data-id');
+                    deleteWigItem(projectId, wigId);
+                });
+            });
+        }
+        
+        // 添加费用项目
+        function addCostItem(projectId) {
+            const costName = prompt('请输入费用名称（例如：妆费、假发费、服装费）:');
+            if (!costName) return;
+            
+            const costAmount = prompt('请输入费用金额（元）:');
+            if (!costAmount || isNaN(costAmount)) {
+                showNotification('请输入有效的金额', 'error');
+                return;
+            }
+            
+            const costDescription = prompt('请输入费用描述（可选）:');
+            
+            const costType = prompt('请选择费用类型（输入1-3）:\n1. 妆费\n2. 毛费\n3. 服装费');
+            let type = 'other';
+            if (costType === '1') type = 'makeup';
+            else if (costType === '2') type = 'wig';
+            else if (costType === '3') type = 'clothing';
+            
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const newCost = {
+                id: Date.now().toString(),
+                name: costName,
+                amount: parseFloat(costAmount).toFixed(2),
+                description: costDescription || '',
+                type: type
+            };
+            
+            project.costs.push(newCost);
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            renderProjectList();
+            
+            showNotification('费用添加成功！', 'success');
+        }
+        
+        // 编辑费用项目
+        function editCostItem(projectId, costId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const cost = project.costs.find(c => c.id === costId);
+            if (!cost) return;
+            
+            const newName = prompt('请输入新的费用名称:', cost.name);
+            if (!newName) return;
+            
+            const newAmount = prompt('请输入新的费用金额:', cost.amount);
+            if (!newAmount || isNaN(newAmount)) {
+                showNotification('请输入有效的金额', 'error');
+                return;
+            }
+            
+            const newDescription = prompt('请输入新的费用描述:', cost.description);
+            
+            cost.name = newName;
+            cost.amount = parseFloat(newAmount).toFixed(2);
+            cost.description = newDescription || '';
+            
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            renderProjectList();
+            
+            showNotification('费用更新成功！', 'success');
+        }
+        
+        // 删除费用项目
+        function deleteCostItem(projectId, costId) {
+            if (!confirm('确定要删除这个费用项目吗？')) return;
+            
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            project.costs = project.costs.filter(c => c.id !== costId);
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            renderProjectList();
+            
+            showNotification('费用删除成功！', 'success');
+        }
+        
+        // 添加服装项目
+        function addClothingItem(projectId) {
+            const clothingName = prompt('请输入服装名称（例如：Saber战斗服）:');
+            if (!clothingName) return;
+            
+            const clothingSource = prompt('请输入服装来源（例如：XX淘宝店定制）:');
+            const clothingDescription = prompt('请输入服装描述（可选）:');
+            
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const newClothing = {
+                id: Date.now().toString(),
+                name: clothingName,
+                source: clothingSource || '',
+                description: clothingDescription || ''
+            };
+            
+            project.clothing.push(newClothing);
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            
+            showNotification('服装添加成功！', 'success');
+        }
+        
+        // 编辑服装项目
+        function editClothingItem(projectId, clothingId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const clothing = project.clothing.find(c => c.id === clothingId);
+            if (!clothing) return;
+            
+            const newName = prompt('请输入新的服装名称:', clothing.name);
+            if (!newName) return;
+            
+            const newSource = prompt('请输入新的服装来源:', clothing.source);
+            const newDescription = prompt('请输入新的服装描述:', clothing.description);
+            
+            clothing.name = newName;
+            clothing.source = newSource || '';
+            clothing.description = newDescription || '';
+            
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            
+            showNotification('服装更新成功！', 'success');
+        }
+        
+        // 删除服装项目
+        function deleteClothingItem(projectId, clothingId) {
+            if (!confirm('确定要删除这个服装项目吗？')) return;
+            
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            project.clothing = project.clothing.filter(c => c.id !== clothingId);
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            
+            showNotification('服装删除成功！', 'success');
+        }
+        
+        // 添加假发项目
+        function addWigItem(projectId) {
+            const wigName = prompt('请输入假发名称（例如：Saber金色假发）:');
+            if (!wigName) return;
+            
+            const wigSource = prompt('请输入假发来源（例如：XX假发店）:');
+            const wigDescription = prompt('请输入假发描述（可选）:');
+            
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const newWig = {
+                id: Date.now().toString(),
+                name: wigName,
+                source: wigSource || '',
+                description: wigDescription || ''
+            };
+            
+            project.wigs.push(newWig);
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            
+            showNotification('假发添加成功！', 'success');
+        }
+        
+        // 编辑假发项目
+        function editWigItem(projectId, wigId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const wig = project.wigs.find(w => w.id === wigId);
+            if (!wig) return;
+            
+            const newName = prompt('请输入新的假发名称:', wig.name);
+            if (!newName) return;
+            
+            const newSource = prompt('请输入新的假发来源:', wig.source);
+            const newDescription = prompt('请输入新的假发描述:', wig.description);
+            
+            wig.name = newName;
+            wig.source = newSource || '';
+            wig.description = newDescription || '';
+            
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            
+            showNotification('假发更新成功！', 'success');
+        }
+        
+        // 删除假发项目
+        function deleteWigItem(projectId, wigId) {
+            if (!confirm('确定要删除这个假发项目吗？')) return;
+            
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            project.wigs = project.wigs.filter(w => w.id !== wigId);
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            
+            showNotification('假发删除成功！', 'success');
+        }
+        
+        // 编辑项目
+        function editProject(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const newName = prompt('请输入新的项目名称:', project.name);
+            if (!newName) return;
+            
+            const newCharacter = prompt('请输入新的角色名称:', project.character);
+            if (!newCharacter) return;
+            
+            const newDescription = prompt('请输入新的项目描述:', project.description);
+            const newTime = prompt('请输入新的计划完成时间（YYYY-MM-DD）:', project.time);
+            const newLocation = prompt('请输入新的计划地点:', project.location);
+            
+            project.name = newName;
+            project.character = newCharacter;
+            project.description = newDescription || '';
+            project.time = newTime || '';
+            project.location = newLocation || '';
+            
+            saveProjectsToLocalStorage();
+            renderProjectDetails(projectId);
+            renderProjectList();
+            
+            showNotification('项目更新成功！', 'success');
+        }
+        
+        // 删除项目
+        function deleteProject(projectId) {
+            if (!confirm('确定要删除这个项目吗？删除后无法恢复。')) return;
+            
+            projects = projects.filter(p => p.id !== projectId);
+            saveProjectsToLocalStorage();
+            
+            if (currentProjectId === projectId) {
+                currentProjectId = projects.length > 0 ? projects[0].id : null;
+                
+                if (currentProjectId) {
+                    renderProjectDetails(currentProjectId);
+                } else {
+                    document.getElementById('emptyState').style.display = 'block';
+                    document.getElementById('projectDetails').classList.remove('active');
+                }
+            }
+            
+            renderProjectList();
+            showNotification('项目删除成功！', 'success');
+        }
+        
+        // 保存项目到本地存储
+        function saveProjectsToLocalStorage() {
+            localStorage.setItem('cosplayProjects', JSON.stringify(projects));
+        }
+        
+        // 显示通知
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // 格式化日期
+        function formatDate(dateString) {
+            if (!dateString) return '未设定';
+            
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return dateString;
+            
+            return date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+    </script>
+</body>
+</html>
